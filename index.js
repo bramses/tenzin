@@ -51,11 +51,15 @@ const generateRedditCommentsLink = (submission) => {
     }
 }
 
+const strWrapperForURL = (str) => {
+    return `<CenterChild>\n\t**[Discuss this post on Reddit](${str})**\n</CenterChild>`
+}
+
 const main = async (url) => {
     try {
         const title = await fetchTitle(url);
         const res = await postToReddit(subreddit, title, url);
-        console.log(generateRedditCommentsLink(res));
+        console.log(strWrapperForURL(generateRedditCommentsLink(res)));
     } catch (err) {
         console.log(err);
     }
